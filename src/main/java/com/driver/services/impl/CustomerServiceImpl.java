@@ -91,7 +91,8 @@ public class CustomerServiceImpl implements CustomerService {
 		Driver driver=tripBooking.getDriver();
 		driver.getCab().setAvailable(true);
 		driver.getTripBookingList().add(tripBooking);
-		driverRepository2.save(driver);
+
+		tripBookingRepository2.save(tripBooking);
 	}
 
 	@Override
@@ -102,6 +103,7 @@ public class CustomerServiceImpl implements CustomerService {
 		Driver driver=tripBooking.getDriver();
 		driver.getCab().setAvailable(true);
 		driver.getTripBookingList().add(tripBooking);
-		driverRepository2.save(driver);
+
+		tripBookingRepository2.save(tripBooking);
 	}
 }
