@@ -7,11 +7,11 @@ import javax.persistence.*;
 public class TripBooking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int bookingId;
+    private int tripBookingId;
     private String fromLocation;
     private String toLocation;
     private int distanceInKm;
-    private TripStatus tripStatus;
+    private TripStatus status;
     private int bill;
 
     @ManyToOne
@@ -25,12 +25,12 @@ public class TripBooking {
     public TripBooking() {
     }
 
-    public int getBookingId() {
-        return bookingId;
+    public int getTripBookingId() {
+        return tripBookingId;
     }
 
-    public void setBookingId(int bookingId) {
-        this.bookingId = bookingId;
+    public void setTripBookingId(int tripBookingId) {
+        this.tripBookingId = tripBookingId;
     }
 
     public String getFromLocation() {
@@ -57,12 +57,12 @@ public class TripBooking {
         this.distanceInKm = distanceInKm;
     }
 
-    public TripStatus getTripStatus() {
-        return tripStatus;
+    public TripStatus getStatus() {
+        return status;
     }
 
-    public void setTripStatus(TripStatus tripStatus) {
-        this.tripStatus = tripStatus;
+    public void setStatus(TripStatus status) {
+        this.status = status;
     }
 
     public int getBill() {

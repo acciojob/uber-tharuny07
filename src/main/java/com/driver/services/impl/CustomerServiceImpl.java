@@ -39,9 +39,7 @@ public class CustomerServiceImpl implements CustomerService {
 	public void deleteCustomer(Integer customerId) {
 		// Delete customer without using deleteById function
 		Customer customer=customerRepository2.findById(customerId).get();
-		customer.setCustomerId(0);
-		customer.setMobile(null);
-		customer.setPassword(null);
+		customerRepository2.deleteByMobile(customer.getMobile());
 
 	}
 
@@ -53,7 +51,7 @@ public class CustomerServiceImpl implements CustomerService {
 		int i = 1;
 		while(true) {
 
-			   if (driverRepository2.findById(i).get().getCab().isAvailable() == true) {
+			   if (driverRepository2.findById(i).get().getCab().getAvailable() == true) {
 				   driver = driverRepository2.findById(i).get();
 				   break;
 		          }
@@ -62,7 +60,7 @@ public class CustomerServiceImpl implements CustomerService {
 	       Customer customer=customerRepository2.findById(customerId).get();
 		   TripBooking tripBooking=new TripBooking();
 		   tripBooking.setCustomer(customer);
-		   tripBooking.setTripStatus(TripStatus.CONFIRMED);
+		   tripBooking.setStatus(TripStatus.CONFIRMED);
 		   tripBooking.setDriver(driver);
 		   tripBooking.setDistanceInKm(distanceInKm);
 		   tripBooking.setFromLocation(fromLocation);
@@ -84,7 +82,7 @@ public class CustomerServiceImpl implements CustomerService {
 		//Cancel the trip having given trip Id and update TripBooking attributes accordingly
 
 		TripBooking tripBooking=tripBookingRepository2.findById(tripId).get();
-		tripBooking.setTripStatus(TripStatus.CANCELED);
+		tripBooking.setStatus(TripStatus.CANCELED);
 		Driver driver=tripBooking.getDriver();
 		driver.getCab().setAvailable(true);
 		driver.getTripBookingList().add(tripBooking);
@@ -95,7 +93,7 @@ public class CustomerServiceImpl implements CustomerService {
 	public void completeTrip(Integer tripId){
 		//Complete the trip having given trip Id and update TripBooking attributes accordingly
 		TripBooking tripBooking=tripBookingRepository2.findById(tripId).get();
-		tripBooking.setTripStatus(TripStatus.COMPLETED);
+		tripBooking.setStatus(TripStatus.COMPLETED);
 		Driver driver=tripBooking.getDriver();
 		driver.getCab().setAvailable(true);
 		driver.getTripBookingList().add(tripBooking);

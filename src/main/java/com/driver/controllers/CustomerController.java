@@ -32,7 +32,7 @@ public class CustomerController {
 		} catch (Exception e) {
 			throw new Exception(e.getMessage());
 		}
-		return new ResponseEntity<>(bookedTrip.getBookingId(), HttpStatus.CREATED);
+		return new ResponseEntity<>(bookedTrip.getTripBookingId(), HttpStatus.CREATED);
 	}
 
 	@DeleteMapping("/complete")
