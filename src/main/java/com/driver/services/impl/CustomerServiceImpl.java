@@ -50,11 +50,16 @@ public class CustomerServiceImpl implements CustomerService {
 		Driver driver;
 		int i = 1;
 		while(true) {
+                try{
+					if (driverRepository2.findById(i).get().getCab().getAvailable() == true) {
+						driver = driverRepository2.findById(i).get();
+						break;
+					}
+				}
+				catch(NoSuchElementException e){
+					throw new Exception("No cab available!");
+				}
 
-			   if (driverRepository2.findById(i).get().getCab().getAvailable() == true) {
-				   driver = driverRepository2.findById(i).get();
-				   break;
-		          }
 		      i++;
 	   }
 	       Customer customer=customerRepository2.findById(customerId).get();
